@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import cookie from "js-cookie";
 import Axios from "axios";
 import { Redirect } from "react-router";
+import { pushtoSlack } from "./slack";
 
 class AddCompany extends Component {
   state = {
@@ -36,6 +37,7 @@ class AddCompany extends Component {
       },
     })
       .then((res) => {
+        pushtoSlack("added");
         this.setState({ redirect: true });
       })
       .catch((err) => {

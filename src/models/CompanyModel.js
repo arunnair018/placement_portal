@@ -21,10 +21,15 @@ const companySchema = mongoose.Schema({
     type: Boolean,
     default: true,
   },
-  date: {
-    type: String,
-  },
+  lookouts: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
 });
+
+companySchema.set("timestamps", true);
 
 companySchema.pre("save", async function (next) {
   const company = this;

@@ -6,14 +6,15 @@ const Company = require("./CompanyModel");
 
 // User Schema
 const interviewSchema = mongoose.Schema({
-  student_name: {
+  student: {
     type: String,
   },
-  company_name: {
+  company: {
     type: String,
   },
   status: {
-    type: String,
+    type: Number,
+    default: 0,
   },
   isActive: {
     type: Boolean,
@@ -23,22 +24,9 @@ const interviewSchema = mongoose.Schema({
     type: String,
     default: "none",
   },
-  date: {
-    type: String,
-  },
 });
 
-interviewSchema.pre("save", async function (next) {
-  const interview = this;
-  const date = new Date();
-  interview.date =
-    date.getDate() +
-    "-" +
-    parseInt(date.getMonth() + 1) +
-    "-" +
-    date.getFullYear();
-  next(); // call the next middleware
-});
+interviewSchema.set("timestamps", true);
 
 // model the schema
 const Interview = mongoose.model("Interview", interviewSchema);

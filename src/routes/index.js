@@ -10,13 +10,16 @@ const authAdmin = require("../middlewares/authAdmin");
 module.exports = (app) => {
   // auth api's
   app.route("/login").post(user.login);
-  app.route("/register").post(user.register);
+  app.route("/users").post(user.register).get(user.list);
 
   // company api's
   app
     .route("/company")
-    .get(company.list)
-    .post(authMentor, company.add)
+    .get(authStudent, company.listall)
+    .post(authMentor, company.add);
+  app
+    .route("/company/:name")
+    .get(authStudent, company.list)
     .put(authMentor, company.update)
     .delete(authMentor, company.delete);
 

@@ -8,7 +8,7 @@ const Company = require("./src/models/CompanyModel");
 const Interview = require("./src/models/InterviewModel");
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 
 const routes = require("./src/routes");
 const db = require("./src/utils/MongoConfig");

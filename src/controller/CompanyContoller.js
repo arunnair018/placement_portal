@@ -3,25 +3,52 @@
 const mongoose = require("mongoose");
 const Company = mongoose.model("Company");
 
-module.exports.list = (req, res) => {
-  var company = req.body.company;
-  if (company.length == 0) {
+module.exports.listall = (req, res) => {
+  if (req.user.role === "student") {
+    Company.aggregate(
+      [
+        {
+          $match: {
+            lookouts: { $in: [mongoose.Types.ObjectId(req.user._id)] },
+          },
+        },
+        {
+          $lookup: {
+            from: "interviews",
+            localField: "name",
+            foreignField: "company",
+            as: "interviews",
+          },
+        },
+        { $addFields: { interview: "$interviews.student" } },
+        { $project: { interviews: 0 } },
+        { $match: { interview: { $ne: req.user.username } } },
+      ],
+      (err, comp) => {
+        if (err) {
+          res.json(err);
+        }
+        res.json(comp);
+      }
+    );
+  } else {
     Company.find({}, (err, companies) => {
       if (err) {
         res.json(err);
-      } else {
-        res.json(companies);
       }
-    });
-  } else {
-    Company.find({ name: company }, (err, companies) => {
-      if (err) {
-        res.json(err);
-      } else {
-        res.json(companies);
-      }
+      res.json(companies);
     });
   }
+};
+
+module.exports.list = (req, res) => {
+  Company.find({}, (err, companies) => {
+    if (err) {
+      res.json(err);
+    } else {
+      res.json(companies);
+    }
+  });
 };
 
 module.exports.add = (req, res) => {

@@ -6,7 +6,6 @@ const authStudent = async (req, res, next) => {
   try {
     const token = req.header("Authorization").replace("Basic ", "");
     const data = jwt.verify(token, "5ebe2294ecd0e0f08eab7690d2a6ee69");
-
     const user = await User.findOne({
       _id: data._id,
       role: data.role,

@@ -22,6 +22,20 @@ module.exports.login = async (req, res) => {
     const token = await user.generateAuthToken();
     const username = user.username;
     const role = user.role;
-    res.json({ token: token, username: username, role: role });
+    const id = user._id;
+    res.json({ token: token, username: username, role: role, id: id });
   }
+};
+
+module.exports.list = async (req, res) => {
+  User.find(
+    { role: "student" },
+    { username: 1, role: 1, _id: 1 },
+    (err, users) => {
+      if (err) {
+        res.json(err);
+      }
+      res.json(users);
+    }
+  );
 };

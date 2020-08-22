@@ -42,7 +42,7 @@ body,
 }
 
 .pic {
-  background-image: url("https://raw.githubusercontent.com/arunnair018/media/master/placement.jpg");
+  background-image: url("/img/placement.jpg");
   width: 100%;
   min-height: 774px;
   background-size: cover;

@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import cookie from "js-cookie";
-import Axios from "axios";
 import { Redirect } from "react-router";
-import { pushtoSlack } from "./slack";
+import axios from "axios";
 
 class AddCompany extends Component {
   state = {
@@ -23,6 +22,7 @@ class AddCompany extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    console.log(this.state.names);
     const data = {
       name: this.state.name.toLowerCase(),
       jd: this.state.jd,
@@ -31,13 +31,41 @@ class AddCompany extends Component {
         this.state.invites.length < 1 ? this.state.all : this.state.invites,
     };
     const token = cookie.get("token");
-    Axios.post("/company", data, {
-      headers: {
-        Authorization: `Basic ${token}`,
-      },
-    })
+    axios
+      .post("/company", data, {
+        headers: {
+          Authorization: `Basic ${token}`,
+        },
+      })
       .then((res) => {
-        pushtoSlack("added");
+        var names;
+
+        if (this.state.names.length < 1) {
+          names = "everyone";
+        } else {
+          names = this.state.names.join(", ");
+        }
+
+        var message = `*Company name: _${data.name}_* \n\n Note: ${data.jd} \n\n Lookouts: ${names}`;
+        var msg = JSON.stringify(
+          { type: "mrkdwn", text: message },
+          {
+            type: "divider",
+          }
+        );
+        var config = {
+          method: "POST",
+          url: "",
+          data: msg,
+        };
+        axios(config)
+          .then(function (response) {
+            console.log(JSON.stringify(response.data));
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
         this.setState({ redirect: true });
       })
       .catch((err) => {
@@ -118,7 +146,7 @@ class AddCompany extends Component {
                         value={item}
                         className='invites'
                       >
-                        {item.username}
+                        @{item.username}
                       </button>
                     );
                   })}

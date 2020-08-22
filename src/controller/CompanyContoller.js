@@ -2,6 +2,7 @@
 
 const mongoose = require("mongoose");
 const Company = mongoose.model("Company");
+const Interview = require("./InterviewController");
 
 module.exports.listall = (req, res) => {
   if (req.user.role === "student") {
@@ -22,7 +23,8 @@ module.exports.listall = (req, res) => {
         },
         { $addFields: { interview: "$interviews.student" } },
         { $project: { interviews: 0 } },
-        { $match: { interview: { $ne: req.user.username } } },
+        { $match: { interview: { $ne: req.user.username }, isActive: true } },
+        { $sort: { createdAt: -1 } },
       ],
       (err, comp) => {
         if (err) {
@@ -32,12 +34,20 @@ module.exports.listall = (req, res) => {
       }
     );
   } else {
-    Company.find({}, (err, companies) => {
-      if (err) {
-        res.json(err);
+    Company.aggregate(
+      [
+        {
+          $match: {},
+        },
+        { $sort: { createdAt: -1 } },
+      ],
+      (err, companies) => {
+        if (err) {
+          res.json(err);
+        }
+        res.json(companies);
       }
-      res.json(companies);
-    });
+    );
   }
 };
 
@@ -63,17 +73,18 @@ module.exports.add = (req, res) => {
 };
 
 module.exports.update = (req, res) => {
-  var name = req.body.name;
+  var name = req.params.name.toLowerCase();
   var update = req.body;
+  console.log(name);
   Company.findOneAndUpdate(
     { name: name },
     update,
     { new: true },
-    (err, company) => {
+    (err, interview) => {
       if (err) {
         res.json(err);
       } else {
-        res.json(company);
+        Interview.purge(res, name);
       }
     }
   );

@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import Axios from "axios";
+import cookie from "js-cookie";
+import { Redirect } from "react-router";
 
 class CompanyList extends Component {
   state = { show: false, redirect: false };
@@ -10,24 +13,42 @@ class CompanyList extends Component {
   hideModal = () => {
     this.setState({ show: false, redirect: true });
   };
+
+  terminate = (id) => {
+    if (window.confirm("You are about to terminate an company.")) {
+      let token = cookie.get("token");
+      Axios.put(
+        `/company/${id}`,
+        { isActive: false },
+        {
+          headers: {
+            Authorization: `Basic ${token}`,
+          },
+        }
+      )
+        .then((res) => {
+          this.setState({
+            redirect: true,
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      this.setState({
+        redirect: true,
+      });
+    }
+  };
+
   render() {
+    if (this.state.redirect) {
+      return <Redirect to='/' />;
+    }
     var companies = this.props.companies;
     return (
       <div>
         <div className='company-list'>
-          <div className='list-header'>
-            Companies
-            <div className='right company-button'>
-              <a
-                className='btn-floating btn-small waves-effect waves-light blue'
-                onClick={() => {
-                  this.props.setScope("add");
-                }}
-              >
-                <i className='material-icons'>+</i>
-              </a>
-            </div>
-          </div>
           <div className='channel-list'>
             <span>Currently Active</span>
             <br />
@@ -36,13 +57,21 @@ class CompanyList extends Component {
               if (item.isActive) {
                 return (
                   <button
-                    className='channel-button waves-effect'
+                    className='channel-button waves-effect lookout-name'
                     key={item._id}
                     onClick={(e) => {
-                      this.props.setscope(item._id);
+                      this.props.setScope(item.name);
                     }}
                   >
                     {item.name}
+                    <button
+                      class='closer'
+                      onClick={() => {
+                        this.terminate(item.name);
+                      }}
+                    >
+                      X
+                    </button>
                   </button>
                 );
               }
@@ -56,7 +85,7 @@ class CompanyList extends Component {
                     className='channel-button waves-effect'
                     key={item._id}
                     onClick={(e) => {
-                      this.props.setscope(item._id);
+                      this.props.setScope(item.name);
                     }}
                   >
                     {item.name}

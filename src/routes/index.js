@@ -24,10 +24,11 @@ module.exports = (app) => {
     .delete(authMentor, company.delete);
 
   // interview api's
-  app.route("interview/list").post(interview.list);
+  app.route("/interview/student/:name").post(interview.listbyStudent);
+  app.route("/interview").post(authStudent, interview.add);
   app
-    .route("/interview")
-    .post(authStudent, interview.add)
+    .route("/interview/company/:name")
+    .post(interview.listbyCompany)
     .put(authStudent, interview.update)
     .delete(authAdmin, interview.delete);
 };

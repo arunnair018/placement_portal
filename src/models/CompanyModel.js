@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 // User Schema
 const companySchema = mongoose.Schema({
   name: {
+    required: true,
     unique: true,
     type: String,
     required: true,
@@ -30,18 +31,6 @@ const companySchema = mongoose.Schema({
 });
 
 companySchema.set("timestamps", true);
-
-companySchema.pre("save", async function (next) {
-  const company = this;
-  const date = new Date();
-  company.date =
-    date.getDate() +
-    "-" +
-    parseInt(date.getMonth() + 1) +
-    "-" +
-    date.getFullYear();
-  next(); // call the next middleware
-});
 
 // model the schema
 const Company = mongoose.model("Company", companySchema);

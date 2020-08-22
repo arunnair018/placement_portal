@@ -15,10 +15,10 @@ class Lookouts extends Component {
     redirect: false,
   };
 
-  showModal = (e) => {
+  showModal = (e, name) => {
     this.setState({
       show: true,
-      scope: { id: e.target.id, name: e.target.innerHTML },
+      scope: { id: e.target.id, name: name },
     });
   };
 
@@ -59,35 +59,39 @@ class Lookouts extends Component {
           handleClose={this.hideModal}
           company={this.state.scope}
         />
-
-        {companies.map((item, index) => {
-          if (item.isActive) {
-            return (
-              <button
-                className='channel-button waves-effect'
-                key={index}
-                id={item._id}
-                onClick={(e) => this.showModal(e)}
-              >
-                {item.name}
-              </button>
-            );
-          }
-        })}
-        <br />
-        {companies.map((item, index) => {
-          if (!item.isActive) {
-            return (
-              <button
-                className='channel-button waves-effect'
-                key={index}
-                disabled
-              >
-                {item.name}
-              </button>
-            );
-          }
-        })}
+        <div class='lookout-list'>
+          {companies.map((item, index) => {
+            if (item.isActive) {
+              return (
+                <button
+                  className='channel-button waves-effect'
+                  key={index}
+                  id={item._id}
+                  name={item.name}
+                  onClick={(e) => this.showModal(e, item.name)}
+                >
+                  <p className='lookout-name'>Company: {item.name}</p>
+                  {item.location ? <p>Location: {item.location}</p> : ""}
+                  {item.jd ? <p>JD: {item.jd}</p> : ""}
+                </button>
+              );
+            }
+          })}
+          <br />
+          {companies.map((item, index) => {
+            if (!item.isActive) {
+              return (
+                <button
+                  className='channel-button waves-effect'
+                  key={index}
+                  disabled
+                >
+                  {item.name}
+                </button>
+              );
+            }
+          })}
+        </div>
       </div>
     );
   }

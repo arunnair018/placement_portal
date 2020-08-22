@@ -47,7 +47,7 @@ class Nav extends Component {
           <nav>
             <div className='nav-wrapper'>
               <a href='/' className='brand-logo left'>
-                AddSkill Placements
+                Placement Portal
               </a>
               <ul id='nav-mobile' className='right logout'>
                 <li>

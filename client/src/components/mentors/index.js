@@ -62,14 +62,28 @@ class Mentor extends Component {
     return (
       <div>
         <div className='row'>
+          <div className='col s12 m9'>
+            <div className='lookoutheader'>Interviews</div>
+            <Details scope={this.state.scope} studs={this.state.studs} />
+          </div>
           <div className='col s12 m3'>
+            <div className='lookoutheader list-header'>
+              Companies
+              <div className='right company-button'>
+                <a
+                  className='btn-floating btn-small waves-effect waves-light purple mentor-button'
+                  onClick={() => {
+                    this.setState({ scope: "add" });
+                  }}
+                >
+                  <i className='material-icons'>+</i>
+                </a>
+              </div>
+            </div>
             <CompanyList
               companies={this.state.companies}
               setScope={this.setScope}
             />
-          </div>
-          <div className='col s12 m9'>
-            <Details scope={this.state.scope} studs={this.state.studs} />
           </div>
         </div>
       </div>

@@ -22,7 +22,7 @@ class Auth extends Component {
 
   render() {
     return (
-      <div className=''>
+      <div>
         <nav>
           <div className='nav-wrapper'>
             <a href='/' className='brand-logo left'>
@@ -42,11 +42,20 @@ class Auth extends Component {
             </ul>
           </div>
         </nav>
-        {this.state.login === "0" ? (
-          <Register staw={this.state.login} login={this.changeLogin} />
-        ) : (
-          <Login staw={this.state.login} />
-        )}
+        <div class='row'>
+          <div class='col s0 m8 l8 main'>
+            <div class='pic'></div>
+          </div>
+          <div class='col s12 m4 l4'>
+            <div class='auth'>
+              {this.state.login === "0" ? (
+                <Register staw={this.state.login} login={this.changeLogin} />
+              ) : (
+                <Login staw={this.state.login} />
+              )}
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

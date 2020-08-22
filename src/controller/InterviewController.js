@@ -3,15 +3,60 @@
 const mongoose = require("mongoose");
 const Interview = mongoose.model("Interview");
 
-module.exports.list = (req, res) => {
-  var filter = req.body;
-  Company.find(filter, (err, companies) => {
-    if (err) {
-      res.json(err);
-    } else {
-      res.json(companies);
+module.exports.listbyCompany = (req, res) => {
+  var filter = req.params.name;
+  if (filter === "all") {
+    Interview.aggregate(
+      [
+        {
+          $match: {},
+        },
+        { $sort: { createdAt: -1 } },
+      ],
+      (err, companies) => {
+        if (err) {
+          res.json(err);
+        } else {
+          res.json(companies);
+        }
+      }
+    );
+  } else {
+    Interview.aggregate(
+      [
+        {
+          $match: { company: filter },
+        },
+        { $sort: { createdAt: -1 } },
+      ],
+      (err, companies) => {
+        if (err) {
+          res.json(err);
+        } else {
+          res.json(companies);
+        }
+      }
+    );
+  }
+};
+
+module.exports.listbyStudent = (req, res) => {
+  var filter = req.params.name;
+  Interview.aggregate(
+    [
+      {
+        $match: { student: filter },
+      },
+      { $sort: { company: 1 } },
+    ],
+    (err, companies) => {
+      if (err) {
+        res.json(err);
+      } else {
+        res.json(companies);
+      }
     }
-  });
+  );
 };
 
 module.exports.add = (req, res) => {
@@ -26,8 +71,9 @@ module.exports.add = (req, res) => {
 };
 
 module.exports.update = (req, res) => {
-  var id = req.body.id;
+  var id = req.params.name;
   var update = req.body;
+  console.log(id, update);
   Interview.findOneAndUpdate(
     { _id: id },
     update,
@@ -50,5 +96,15 @@ module.exports.delete = (req, res) => {
     } else {
       res.json(interview);
     }
+  });
+};
+
+module.exports.purge = (res, name) => {
+  var query = { company: name };
+  Interview.updateMany(query, { $set: { isActive: false } }, (err, doc) => {
+    if (err) {
+      res.json(err);
+    }
+    res.json(doc);
   });
 };

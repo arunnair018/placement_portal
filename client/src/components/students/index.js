@@ -6,15 +6,13 @@ class Student extends Component {
     return (
       <div>
         <div class='row'>
-          <div class='lookout-list'>
-            <div class='col s12 m3'>
-              <div class='lookoutheader'>Company Lookouts</div>
-              <Lookouts />
-            </div>
-            <div class='col s12 m9'>
-              <div class='lookoutheader'>Interviews</div>
-              <Details />
-            </div>
+          <div class='col s12 m9'>
+            <div class='lookoutheader'>Interviews</div>
+            <Details />
+          </div>
+          <div class='col s12 m3 col-sm'>
+            <div class='lookoutheader'>Company Lookouts</div>
+            <Lookouts />
           </div>
         </div>
       </div>

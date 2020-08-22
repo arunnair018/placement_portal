@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 
 module.exports.connect = () => {
   console.log("connecting to DB...");
-  const url = process.env.DB_URL || "mongodb://localhost:27017/portal";
+  const url = process.env.DB_URL;
   mongoose
     .connect(url, {
       useNewUrlParser: true,

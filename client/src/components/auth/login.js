@@ -32,14 +32,12 @@ class Login extends Component {
         const data = res.data.role;
         const key = "RoLe";
         const role = crypto.createHmac("sha1", key).update(data).digest("hex");
-        var inFifteenMinutes = new Date(new Date().getTime() + 15 * 60 * 1000);
+       // var inFifteenMinutes = new Date(new Date().getTime() + 15 * 60 * 1000);
         // when API call succeed set cookies
-        cookie.set("token", res.data.token, { expires: inFifteenMinutes });
-        cookie.set("username", res.data.username, {
-          expires: inFifteenMinutes,
-        });
-        cookie.set("id", res.data.id, { expires: inFifteenMinutes });
-        cookie.set("role", role, { expires: inFifteenMinutes });
+        cookie.set("token", res.data.token);
+        cookie.set("username", res.data.username);
+        cookie.set("id", res.data.id);
+        cookie.set("role", role);
         this.setState({ redirect: true });
       })
       .catch((res) => {

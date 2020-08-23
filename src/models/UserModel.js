@@ -40,7 +40,7 @@ userSchema.methods.generateAuthToken = async function () {
   const user = this;
   const token = jwt.sign(
     {
-      exp: Math.floor(Date.now() / 1000) + 60 * 15,
+//      exp: Math.floor(Date.now() / 1000) + 60 *30 ,
       _id: user._id,
       role: user.role,
     },

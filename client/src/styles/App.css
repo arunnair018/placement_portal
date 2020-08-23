@@ -10,18 +10,23 @@ body,
   height: 100%;
   max-width: 100%;
   margin-bottom: 0px;
-  background-color: #f6f2ff;
+  background-color: #f5f5f5;
 }
 
 .nav-wrapper {
-  background-color: #000100;
+  background-color: #443955;
 }
 
 .channel-button {
-  background-color: #6c809a;
+  background-color: #826b76;
 }
+
 .icard {
-  background-color: #a1a6b4;
+  background-color: #a7d7db;
+}
+.disable {
+  background-color: #5a85a3;
+  opacity: 0.8;
 }
 
 .brand-logo {
@@ -272,10 +277,6 @@ label {
   border-radius: 50%;
 }
 
-.disable {
-  opacity: 0.5;
-}
-
 .main {
   margin: 0px;
   padding: 0px;
@@ -290,4 +291,15 @@ label {
     margin: 10px;
     padding: 10px;
   }
+}
+
+form {
+  background-color: white;
+  padding: 2% 10%;
+  margin: 5% 0%;
+  color: black;
+  border-radius: 15px;
+  height: auto;
+  padding-bottom: 8%;
+  box-shadow: 2px 2px 5px gray;
 }

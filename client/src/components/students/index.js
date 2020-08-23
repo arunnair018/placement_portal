@@ -7,7 +7,6 @@ class Student extends Component {
       <div>
         <div class='row'>
           <div class='col s12 m9'>
-            <div class='lookoutheader'>Interviews</div>
             <Details />
           </div>
           <div class='col s12 m3 col-sm'>

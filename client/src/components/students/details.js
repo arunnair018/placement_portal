@@ -98,6 +98,23 @@ class Details extends Component {
         />
         <div class='row'>
           {this.state.interviews.map((item) => {
+            var status;
+            switch (item.status) {
+              case 1:
+                status = "ASSIGNMENT";
+                break;
+              case 2:
+                status = "TECHNICAL";
+                break;
+              case 3:
+                status = "HR";
+                break;
+              case 4:
+                status = "PLACED";
+                break;
+              default:
+                status = "INITIAL";
+            }
             if (item.isActive) {
               return (
                 <div key={item._id}>
@@ -118,6 +135,16 @@ class Details extends Component {
                       >
                         X
                       </button>
+
+                      <hr
+                        style={{
+                          height: "2px",
+                          borderWidth: "0",
+                          color: "black",
+                          backgroundColor: "black",
+                        }}
+                      />
+                      <span>Status: {status}</span>
                     </div>
                   </div>
                 </div>
@@ -131,7 +158,7 @@ class Details extends Component {
               return (
                 <div key={item._id} className='disable'>
                   <div class='col s12 m6 l4'>
-                    <div class='icard' id={item._id}>
+                    <div class='icard disable' id={item._id}>
                       <span class='iheader'>{item.company.toUpperCase()}</span>
                     </div>
                   </div>

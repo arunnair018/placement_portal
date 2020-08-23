@@ -78,16 +78,7 @@ class Register extends Component {
                 required
               />
             </div>
-            <div className='form-group'>
-              <input
-                type='text'
-                className='form-control'
-                placeholder='Enter role'
-                id='role'
-                onChange={this.handleChange}
-                required
-              />
-            </div>
+
             <div className='form-group'>
               <input
                 type='password'
@@ -116,6 +107,20 @@ class Register extends Component {
                 id='secret'
                 onChange={this.handleChange}
               />
+            </div>
+            <div className='form-group'>
+              <select
+                class='browser-default select'
+                id='role'
+                defaultValue='0'
+                onChange={this.handleChange}
+              >
+                <option disabled value='0'>
+                  Choose a role
+                </option>
+                <option value='mentor'>Mentor</option>
+                <option value='student'>Student</option>
+              </select>
             </div>
             <br />
             <button type='submit' className='btn btn-primary'>

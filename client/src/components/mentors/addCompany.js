@@ -91,78 +91,77 @@ class AddCompany extends Component {
     }
     return (
       <div className='container'>
-        <h3>Add a new company</h3>
-        <section className='pikachu'>
-          <div className=' modainer'>
-            <div className='row'>
-              <form className='col- 12'>
-                <div className='input-field col s6'>
-                  <input
-                    placeholder='Company Name'
-                    id='name'
-                    type='text'
-                    className='validate'
-                    onChange={this.handleChange}
-                    required
-                  />
-                </div>
-                <div className='input-field col s6'>
-                  <input
-                    placeholder='Location'
-                    id='location'
-                    type='text'
-                    className='validate'
-                    onChange={this.handleChange}
-                  />
-                </div>
-                <div className='input-field col s12'>
-                  <input
-                    placeholder='Job Description'
-                    id='jd'
-                    type='text'
-                    className='validate'
-                    onChange={this.handleChange}
-                  />
-                </div>
-                <div className='input-field col s12'>
-                  <input
-                    placeholder='Lookouts'
-                    id='invites'
-                    type='text'
-                    className='validate'
-                    onChange={this.handleChange}
-                    value={this.state.names}
-                    disabled
-                  />
-                </div>
-
-                <div className='invites-list'>
-                  {users.map((item) => {
-                    return (
-                      <button
-                        onClick={this.addInvites}
-                        id={item._id}
-                        key={item._id}
-                        value={item}
-                        className='invites'
-                      >
-                        @{item.username}
-                      </button>
-                    );
-                  })}
-                </div>
-              </form>
+        <div className='row'>
+          <form class='col s12'>
+            <h3>Add a new company</h3>
+            <div className='input-field col s6'>
+              <input
+                placeholder='Company Name'
+                id='name'
+                type='text'
+                className='validate'
+                onChange={this.handleChange}
+                required
+              />
             </div>
-            <button
-              className='btn waves-effect waves-light right'
-              type='submit'
-              name='action'
-              onClick={this.handleSubmit}
-            >
-              CREATE
-            </button>
-          </div>
-        </section>
+            <div className='input-field col s6'>
+              <input
+                placeholder='Location'
+                id='location'
+                type='text'
+                className='validate'
+                onChange={this.handleChange}
+              />
+            </div>
+            <div className='input-field col s12'>
+              <input
+                placeholder='Job Description'
+                id='jd'
+                type='text'
+                className='validate'
+                onChange={this.handleChange}
+              />
+            </div>
+            <div className='input-field col s12'>
+              <input
+                placeholder='Lookouts'
+                id='invites'
+                type='text'
+                className='validate'
+                onChange={this.handleChange}
+                value={this.state.names}
+                disabled
+              />
+            </div>
+
+            <div class='col s9'>
+              <div className='invites-list'>
+                {users.map((item) => {
+                  return (
+                    <button
+                      onClick={this.addInvites}
+                      id={item._id}
+                      key={item._id}
+                      value={item}
+                      className='invites'
+                    >
+                      @{item.username}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+            <div class='col s3'>
+              <button
+                type='submit'
+                className='btn btn-primary right'
+                onClick={this.handleSubmit}
+              >
+                create
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     );
   }

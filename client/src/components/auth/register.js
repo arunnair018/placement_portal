@@ -78,6 +78,10 @@ class Register extends Component {
                 required
               />
             </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2a2b6dbabf5f9d5f21d7fe6ae98c96a65fffb90d
             <div className='form-group'>
               <input
                 type='password'
@@ -107,7 +111,11 @@ class Register extends Component {
                 onChange={this.handleChange}
               />
             </div>
+<<<<<<< HEAD
 <div className='form-group'>
+=======
+            <div className='form-group'>
+>>>>>>> 2a2b6dbabf5f9d5f21d7fe6ae98c96a65fffb90d
               <select
                 class='browser-default select'
                 id='role'

@@ -63,7 +63,6 @@ class Mentor extends Component {
       <div>
         <div className='row'>
           <div className='col s12 m9'>
-            <div className='lookoutheader'>Interviews</div>
             <Details scope={this.state.scope} studs={this.state.studs} />
           </div>
           <div className='col s12 m3'>

@@ -178,7 +178,7 @@ class Details extends Component {
               return (
                 <div key={item._id} class='disable'>
                   <div class='col s12 m4'>
-                    <div class='icard'>
+                    <div class='icard disable'>
                       <span class='iheader'>
                         {item.student.toUpperCase()} -{" "}
                         {item.company.toUpperCase()}

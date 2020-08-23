@@ -22,7 +22,6 @@ class AddCompany extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state.names);
     const data = {
       name: this.state.name.toLowerCase(),
       jd: this.state.jd,
@@ -55,12 +54,13 @@ class AddCompany extends Component {
         );
         var config = {
           method: "POST",
-          url: "https://hooks.slack.com/services/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",
+          url:
+            "https://hooks.slack.com/services/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",
           data: msg,
         };
         axios(config)
           .then(function (response) {
-            console.log(JSON.stringify(response.data));
+            console.log("sent to slack...");
           })
           .catch(function (error) {
             console.log(error);

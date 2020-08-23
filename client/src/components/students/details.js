@@ -56,7 +56,6 @@ class Details extends Component {
     let student = cookie.get("username");
     Axios.post(`/interview/student/${student}`)
       .then((res) => {
-        console.log(res);
         this.setState({
           interviews: res.data,
           load: true,

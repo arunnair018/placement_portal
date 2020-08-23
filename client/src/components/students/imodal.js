@@ -23,7 +23,6 @@ class Imodal extends Component {
         load: true,
       });
     }
-    console.log(this.state);
   }
 
   handleSubmit = (e) => {

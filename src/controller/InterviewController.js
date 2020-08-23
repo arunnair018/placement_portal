@@ -73,7 +73,6 @@ module.exports.add = (req, res) => {
 module.exports.update = (req, res) => {
   var id = req.params.name;
   var update = req.body;
-  console.log(id, update);
   Interview.findOneAndUpdate(
     { _id: id },
     update,

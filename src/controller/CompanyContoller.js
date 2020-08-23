@@ -75,7 +75,6 @@ module.exports.add = (req, res) => {
 module.exports.update = (req, res) => {
   var name = req.params.name.toLowerCase();
   var update = req.body;
-  console.log(name);
   Company.findOneAndUpdate(
     { name: name },
     update,

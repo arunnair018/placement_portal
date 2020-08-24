@@ -81,7 +81,11 @@ class Details extends Component {
 
   render() {
     if (!this.state.load) {
-      return <center>fetching interviews...</center>;
+      return (
+        <center>
+          <div class='loader'></div>;
+        </center>
+      );
     }
 
     if (this.state.redirect) {

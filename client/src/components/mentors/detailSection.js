@@ -82,7 +82,11 @@ class Details extends Component {
       );
     }
     if (!this.state.load) {
-      return <center>fetching interviews...</center>;
+      return (
+        <center>
+          <div class='loader'></div>;
+        </center>
+      );
     }
     if (this.state.redirect) {
       return <Redirect to='/' />;

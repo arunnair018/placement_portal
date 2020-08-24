@@ -57,7 +57,11 @@ class Mentor extends Component {
       return <Redirect to='/' />;
     }
     if (!this.state.load) {
-      return <center>loading...</center>;
+      return (
+        <center>
+          <div class='loader'></div>;
+        </center>
+      );
     }
     return (
       <div>

@@ -47,7 +47,11 @@ class Lookouts extends Component {
   render() {
     let companies = this.state.companies;
     if (!this.state.load) {
-      return <center>fetching...</center>;
+      return (
+        <center>
+          <div class='loader'></div>;
+        </center>
+      );
     }
     if (this.state.redirect) {
       return <Redirect to='/' />;

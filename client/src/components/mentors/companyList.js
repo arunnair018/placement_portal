@@ -76,7 +76,14 @@ class CompanyList extends Component {
                 );
               }
             })}
-            <hr />
+            <hr
+              style={{
+                height: "1px",
+                borderWidth: "0",
+                color: "black",
+                backgroundColor: "black",
+              }}
+            />
             {companies.map((item, index) => {
               if (!item.isActive) {
                 return (

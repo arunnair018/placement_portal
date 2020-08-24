@@ -55,7 +55,7 @@ class AddCompany extends Component {
         var config = {
           method: "POST",
           url:
-            "https://hooks.slack.com/services/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",
+            "",
           data: msg,
         };
         axios(config)

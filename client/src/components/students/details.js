@@ -153,6 +153,7 @@ class Details extends Component {
                 </div>
               );
             }
+            return null
           })}
         </div>
         <div class='row'>
@@ -168,6 +169,7 @@ class Details extends Component {
                 </div>
               );
             }
+            return null
           })}
         </div>
       </div>

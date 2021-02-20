@@ -2,7 +2,6 @@ import React from "react";
 import { Component } from "react";
 import Axios from "axios";
 import cookie from "js-cookie";
-import _ from "lodash";
 import Modal from "./modal";
 import { Redirect } from "react-router";
 
@@ -80,6 +79,7 @@ class Lookouts extends Component {
                 </button>
               );
             }
+            return null
           })}
           <br />
           {companies.map((item, index) => {
@@ -94,6 +94,7 @@ class Lookouts extends Component {
                 </button>
               );
             }
+            return null
           })}
         </div>
       </div>

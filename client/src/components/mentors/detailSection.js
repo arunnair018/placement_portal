@@ -41,7 +41,6 @@ class Details extends Component {
 
   fetchData = () => {
     let company = this.props.scope || "all";
-    let token = cookie.get("token");
     Axios.post(`/interview/company/${company}`)
       .then((res) => {
         this.setState({
@@ -84,7 +83,7 @@ class Details extends Component {
     if (!this.state.load) {
       return (
         <center>
-          <div class='loader'></div>;
+          <div className='loader'></div>;
         </center>
       );
     }
@@ -92,8 +91,8 @@ class Details extends Component {
       return <Redirect to='/' />;
     }
     return (
-      <div class='idetails'>
-        <div class='row'>
+      <div className='idetails'>
+        <div className='row'>
           {this.state.interviews.map((item, index) => {
             var status;
             switch (item.status) {
@@ -115,14 +114,14 @@ class Details extends Component {
             if (item.isActive) {
               return (
                 <div key={item._id}>
-                  <div class='col s12 m4'>
-                    <div class='icard'>
-                      <span class='iheader'>
+                  <div className='col s12 m4'>
+                    <div className='icard'>
+                      <span className='iheader'>
                         {item.student.toUpperCase()} -{" "}
                         {item.company.toUpperCase()}
                       </span>
                       <button
-                        class='closer'
+                        className='closer'
                         onClick={() => {
                           this.terminate(item._id);
                         }}
@@ -137,7 +136,7 @@ class Details extends Component {
                           backgroundColor: "black",
                         }}
                       />
-                      <div class='content'>
+                      <div className='content'>
                         <p>
                           <b>Status: </b>
                           {status}
@@ -156,10 +155,11 @@ class Details extends Component {
                 </div>
               );
             }
+            return null
           })}
         </div>
 
-        <div class='row'>
+        <div className='row'>
           {this.state.interviews.map((item, index) => {
             var status;
             switch (item.status) {
@@ -180,10 +180,10 @@ class Details extends Component {
             }
             if (!item.isActive) {
               return (
-                <div key={item._id} class='disable'>
-                  <div class='col s12 m4'>
-                    <div class='icard disable'>
-                      <span class='iheader'>
+                <div key={item._id} className='disable'>
+                  <div className='col s12 m4'>
+                    <div className='icard disable'>
+                      <span className='iheader'>
                         {item.student.toUpperCase()} -{" "}
                         {item.company.toUpperCase()}
                       </span>
@@ -195,7 +195,7 @@ class Details extends Component {
                           backgroundColor: "black",
                         }}
                       />
-                      <div class='content'>
+                      <div className='content'>
                         <p>
                           <b>Started on: </b>
                           {this.convertDate(item.createdAt)}
@@ -218,6 +218,7 @@ class Details extends Component {
                 </div>
               );
             }
+            return null
           })}
         </div>
       </div>

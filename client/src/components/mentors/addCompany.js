@@ -37,8 +37,6 @@ class AddCompany extends Component {
         },
       })
       .then((res) => {
-        var names;
-
         this.setState({ redirect: true });
       })
       .catch((err) => {

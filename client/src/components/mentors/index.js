@@ -59,7 +59,7 @@ class Mentor extends Component {
     if (!this.state.load) {
       return (
         <center>
-          <div class='loader'></div>;
+          <div className='loader'></div>;
         </center>
       );
     }

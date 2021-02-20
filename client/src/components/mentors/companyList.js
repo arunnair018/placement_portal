@@ -65,7 +65,7 @@ class CompanyList extends Component {
                   >
                     {item.name}
                     <button
-                      class='closer'
+                      className='closer'
                       onClick={() => {
                         this.terminate(item.name);
                       }}
@@ -75,6 +75,7 @@ class CompanyList extends Component {
                   </button>
                 );
               }
+              return null
             })}
             <hr
               style={{
@@ -99,6 +100,7 @@ class CompanyList extends Component {
                   </button>
                 );
               }
+              return null
             })}
           </div>
         </div>

@@ -83,7 +83,7 @@ class Details extends Component {
     if (!this.state.load) {
       return (
         <center>
-          <div class='loader'></div>;
+          <div className='loader'></div>;
         </center>
       );
     }
@@ -99,8 +99,12 @@ class Details extends Component {
           handleClose={this.hideModal}
           interview={this.state.scope}
         />
-        <div class='row'>
-          {this.state.interviews.map((item) => {
+        <div className='row'>
+          <h5 className='margin-2'>Ongoing</h5>
+          <hr></hr>
+          {
+          
+          this.state.interviews.map((item) => {
             var status;
             switch (item.status) {
               case 1:
@@ -121,7 +125,7 @@ class Details extends Component {
             if (item.isActive) {
               return (
                 <div key={item._id}>
-                  <div class='col s12 m6 l4'>
+                  <div class='col s12 m6 l3'>
                     <div
                       class='icard'
                       id={item._id}
@@ -153,15 +157,17 @@ class Details extends Component {
                 </div>
               );
             }
-            return null
+            return 
           })}
         </div>
-        <div class='row'>
+        <div className='row'>
+        <h5 className='margin-2'>InActive</h5>
+          <hr></hr>
           {this.state.interviews.map((item) => {
             if (!item.isActive) {
               return (
                 <div key={item._id} className='disable'>
-                  <div class='col s12 m6 l4'>
+                  <div class='col s12 m6 l3'>
                     <div class='icard disable' id={item._id}>
                       <span class='iheader'>{item.company.toUpperCase()}</span>
                     </div>

@@ -93,6 +93,8 @@ class Details extends Component {
     return (
       <div className='idetails'>
         <div className='row'>
+        <h5 className='margin-2'>Ongoing</h5>
+          <hr></hr>
           {this.state.interviews.map((item, index) => {
             var status;
             switch (item.status) {
@@ -114,7 +116,7 @@ class Details extends Component {
             if (item.isActive) {
               return (
                 <div key={item._id}>
-                  <div className='col s12 m4'>
+                  <div className='col s12 m3'>
                     <div className='icard'>
                       <span className='iheader'>
                         {item.student.toUpperCase()} -{" "}
@@ -160,6 +162,8 @@ class Details extends Component {
         </div>
 
         <div className='row'>
+        <h5 className='margin-2'>Inactive</h5>
+          <hr></hr>
           {this.state.interviews.map((item, index) => {
             var status;
             switch (item.status) {
@@ -181,7 +185,7 @@ class Details extends Component {
             if (!item.isActive) {
               return (
                 <div key={item._id} className='disable'>
-                  <div className='col s12 m4'>
+                  <div className='col s12 m3'>
                     <div className='icard disable'>
                       <span className='iheader'>
                         {item.student.toUpperCase()} -{" "}

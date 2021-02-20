@@ -197,12 +197,25 @@ nav ul a:hover {
 .modal-main {
   position: fixed;
   background: white;
-  width: 80%;
+  width: 30%;
   height: auto;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 25px;
+}
+
+@media screen and (max-width: 760px) {
+  .modal-main {
+    position: fixed;
+    background: white;
+    width: 90%;
+    height: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 25px;
+  }
 }
 
 .display-block {
@@ -241,7 +254,7 @@ nav ul a:hover {
 .icard {
   display: inline-block;
   width: 100%;
-  padding: 5% 5%;
+  padding: 3% 2%;
   border-radius: 35px;
   box-shadow: 2px 2px 4px gray;
   color: black;
@@ -332,3 +345,7 @@ form {
   /* for Safari, Chrome, Opera */ 
   -webkit-appearance: none; 
 } 
+
+.margin-2 {
+  margin: 0% 2%;
+}

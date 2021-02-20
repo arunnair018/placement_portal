@@ -8,7 +8,7 @@ class Register extends Component {
     password: "",
     secret: "",
     errors: "",
-    role: "",
+    role: "student",
     redirect: false,
   };
 
@@ -22,31 +22,32 @@ class Register extends Component {
   // function to submit the form
   handleSubmit = (e) => {
     e.preventDefault(); // prevents default working of function
+    console.log(this.state.role)
     // form the body of request
+
     if (
-      MD5(this.state.secret).toString() === "051aa7361370f8af02bd44de248731c8"
+      this.state.role==='Mentor' && MD5(this.state.secret).toString() !== "63bcc58aa5ba755987c3bb16e495dd2d"
     ) {
-      const data = {
-        username: this.state.username,
-        role: this.state.role,
-        password: this.state.password,
-      };
-      // axiosfunction to make API call
-      axios
-        .post(`/users`, data)
-        .then((res) => {
-          this.props.login("1");
-        })
-        .catch((err) => {
-          // API call not succeed set error to display
-          this.setState({ errors: "error submitting" });
-        });
-    } else {
       this.setState({
         errors: "Invalid Secret...",
       });
-    }
-  };
+    } 
+    const data = {
+      username: this.state.username,
+      role: this.state.role,
+      password: this.state.password,
+    };
+    // axiosfunction to make API call
+    axios
+      .post(`/users`, data)
+      .then((res) => {
+        this.props.login("1");
+      })
+      .catch((err) => {
+        // API call not succeed set error to display
+        this.setState({ errors: "error submitting" });
+  });
+}
 
   // check for password matching
   confirmPassword = (e) => {
@@ -115,11 +116,8 @@ class Register extends Component {
                 defaultValue='0'
                 onChange={this.handleChange}
               >
-                <option disabled value='0'>
-                  Choose a role
-                </option>
-                <option value='mentor'>Mentor</option>
                 <option value='student'>Student</option>
+                <option value='mentor'>Mentor</option>
               </select>
             </div>
             <br />

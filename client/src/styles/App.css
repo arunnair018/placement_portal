@@ -37,8 +37,9 @@ body,
 
 .auth {
   float: right;
-  min-width: 100%;
+  /* min-width: 100%; */
   margin-top: 5%;
+  width: 40%;
 }
 
 .row .main {
@@ -49,7 +50,7 @@ body,
 .pic {
   background-image: url("/img/placement.jpg");
   width: 100%;
-  min-height: 774px;
+  height:915px;
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -322,3 +323,12 @@ form {
     transform: rotate(360deg);
   }
 }
+
+
+.select {
+  height: 2rem; 
+  /* for Firefox */ 
+  -moz-appearance: none; 
+  /* for Safari, Chrome, Opera */ 
+  -webkit-appearance: none; 
+} 

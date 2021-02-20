@@ -39,33 +39,6 @@ class AddCompany extends Component {
       .then((res) => {
         var names;
 
-        if (this.state.names.length < 1) {
-          names = "everyone";
-        } else {
-          names = this.state.names.join(", ");
-        }
-
-        var message = `*Company name: _${data.name}_* \n\n Note: ${data.jd} \n\n Lookouts: ${names}`;
-        var msg = JSON.stringify(
-          { type: "mrkdwn", text: message },
-          {
-            type: "divider",
-          }
-        );
-        var config = {
-          method: "POST",
-          url:
-            "",
-          data: msg,
-        };
-        axios(config)
-          .then(function (response) {
-            console.log("sent to slack...");
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-
         this.setState({ redirect: true });
       })
       .catch((err) => {

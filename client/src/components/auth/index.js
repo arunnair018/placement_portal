@@ -42,12 +42,12 @@ class Auth extends Component {
             </ul>
           </div>
         </nav>
-        <div class='row'>
-          <div class='col s0 m8 l8 main'>
+        <div className='row'>
+          {/* <div class='col s0 m8 l8 main'>
             <div class='pic'></div>
-          </div>
-          <div class='col s12 m4 l4'>
-            <div class='auth'>
+          </div> */}
+          <div className='pic'>
+            <div className='auth'>
               {this.state.login === "0" ? (
                 <Register staw={this.state.login} login={this.changeLogin} />
               ) : (

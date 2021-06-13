@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "client": "cd client && npm start",
-    "dev": "concurrently --names \"SERVER,CLIENT\" -c \"bgBlue.bold,bgMagenta.bold\" \"nodemon server.js\" \"npm run client\""
+    "dev": "concurrently --names \"SERVER,CLIENT\" -c \"bgBlue.bold,bgMagenta.bold\" \"nodemon server.js\" \"npm run client\"",
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   },
   "repository": {
     "type": "git",
